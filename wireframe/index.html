@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haribon Landing — Wireframe</title>
+  <style>
+    /* Wireframe-only tokens: spacing and layout only. No design direction. */
+    :root {
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+      --space-9: 80px;
+      --space-10: 96px;
+      --space-11: 128px;
+
+      --container: 1280px;
+      --inset-mobile: 16px;
+      --inset-desktop: 48px;
+      --radius: 16px;
+      --radius-sm: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: #1a1a1a;
+      background: #f5f7fa;
+      line-height: 1.5;
+    }
+
+    /* Layout primitives */
+    .container {
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: var(--inset-mobile);
+      width: 100%;
+    }
+
+    /* Boxes: neutral rounded boxes for layout/spacing focus only */
+    .box {
+      background: #e8ecf1;
+      border: 1px dashed #b7c2cf;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #6b7683;
+      font-size: 14px;
+      font-weight: 500;
+      padding: var(--space-4);
+      min-height: 48px;
+    }
+    .box.sm { min-height: 40px; }
+    .box.lg { min-height: 120px; }
+
+    /* Typography stubs (weight/size only, no design) */
+    .h1, .h2, .h3, .p { margin: 0; }
+    .h1 { font-size: clamp(32px, 6vw, 56px); font-weight: 700; line-height: 1.1; }
+    .h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 700; line-height: 1.15; }
+    .h3 { font-size: 18px; font-weight: 600; }
+    .p { font-size: 16px; }
+
+    /* Sections: each takes a full page */
+    .section {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding-block: var(--space-8);
+    }
+    .section__header {
+      margin-bottom: var(--space-7);
+      display: grid;
+      gap: var(--space-3);
+      max-width: 640px;
+    }
+    .section__header.center { margin-inline: auto; text-align: center; }
+
+    /* Sticky anchor nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      height: 64px;
+    }
+    .nav__logo { width: 120px; }
+    .nav__links { display: flex; gap: var(--space-5); align-items: center; }
+    .nav__link { color: #4b5563; text-decoration: none; font-size: 14px; }
+    .nav__cta { padding: var(--space-2) var(--space-5); border-radius: var(--radius-sm); }
+
+    /* Hero: full page, text left + media right */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding-block: var(--space-9);
+    }
+    .hero__inner {
+      display: grid;
+      gap: var(--space-8);
+      grid-template-columns: 1fr;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .hero__inner { grid-template-columns: 1fr 1fr; }
+    }
+    .hero__content {
+      display: grid;
+      gap: var(--space-5);
+      justify-items: start;
+      text-align: left;
+      max-width: 560px;
+    }
+    .hero__eyebrow { width: 160px; }
+    .hero__actions { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+    .hero__cta { padding: var(--space-3) var(--space-6); border-radius: var(--radius-sm); }
+    .hero__cta.secondary { padding: var(--space-3) var(--space-6); }
+    .hero__media { width: 100%; min-height: 320px; }
+
+    /* About: who we are + expectations keywords + FAQ button */
+    .about__top {
+      display: grid;
+      gap: var(--space-8);
+      grid-template-columns: 1fr;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .about__top { grid-template-columns: 1fr 1fr; }
+    }
+    .about__copy { display: grid; gap: var(--space-4); max-width: 560px; }
+    .about__asset { width: 100%; min-height: 280px; }
+    .about__keywords {
+      display: grid;
+      gap: var(--space-5);
+      grid-template-columns: 1fr;
+      margin-top: var(--space-9);
+    }
+    @media (min-width: 640px) { .about__keywords { grid-template-columns: repeat(3, 1fr); } }
+    .keyword { display: grid; gap: var(--space-2); }
+    .keyword__title { width: 100%; }
+    .about__actions {
+      margin-top: var(--space-8);
+      display: flex;
+      gap: var(--space-4);
+    }
+
+    /* Card grids */
+    .card-grid {
+      display: grid;
+      gap: var(--space-5);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .card {
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius);
+    }
+    .card__media { width: 100%; min-height: 140px; }
+    .card__body { display: grid; gap: var(--space-2); }
+    .card__meta { display: flex; gap: var(--space-3); align-items: center; }
+    .card__tag { width: 64px; }
+
+    .btn-coming {
+      margin-top: var(--space-5);
+      padding: var(--space-3) var(--space-6);
+      border-radius: var(--radius-sm);
+      border: 1px dashed #b7c2cf;
+      color: #6b7683;
+      background: transparent;
+      font-size: 14px;
+      cursor: default;
+      display: inline-block;
+    }
+
+    /* FAQ */
+    .faq__list {
+      display: grid;
+      gap: var(--space-3);
+      max-width: 760px;
+      margin-inline: auto;
+      width: 100%;
+    }
+    .faq__item { padding: var(--space-4) var(--space-5); }
+    .faq__q .box { justify-content: flex-start; text-align: left; }
+
+    /* Closing + footer */
+    .closing {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      padding-block: var(--space-10);
+    }
+    .closing__inner { display: grid; gap: var(--space-6); justify-items: center; max-width: 560px; margin-inline: auto; }
+    .footer { border-top: 1px solid #e2e8f0; padding-block: var(--space-7); }
+    .footer__inner { display: grid; gap: var(--space-6); }
+    .footer__cols { display: grid; gap: var(--space-5); grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .footer__cols { grid-template-columns: repeat(4, 1fr); } }
+    .footer__col { display: grid; gap: var(--space-2); }
+    .footer__bottom { display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
+
+    /* Responsive helper: hide some nav links on small screens */
+    @media (max-width: 639px) {
+      .nav__links .nav__link { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sticky anchor nav -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <div class="box sm nav__logo">[[LOGO]]</div>
+      <nav class="nav__links" aria-label="Sections">
+        <a class="nav__link" href="#about">About</a>
+        <a class="nav__link" href="#what-we-do">What we do</a>
+        <a class="nav__link" href="#projects">Projects</a>
+        <a class="nav__link" href="#updates">Updates</a>
+        <a class="nav__link" href="#leadership">Leadership</a>
+        <a class="nav__link" href="#faq">FAQ</a>
+        <div class="box sm nav__cta">Join Haribon</div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Identity hero: text left, media right, full page -->
+    <section class="hero" id="top">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <div class="box sm hero__eyebrow">[[ORG_NAME]]</div>
+          <h1 class="h1">[[TAGLINE]]</h1>
+          <p class="p">[[VALUE_PROPOSITION]]</p>
+          <div class="hero__actions">
+            <div class="box sm hero__cta">Join Haribon</div>
+            <div class="box sm hero__cta secondary">Explore projects</div>
+          </div>
+        </div>
+        <div class="box hero__media">[[HERO_MEDIA]]</div>
+      </div>
+    </section>
+
+    <!-- 2. About: who we are (complete), full page -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about__top">
+          <div class="about__copy">
+            <h2 class="h2">Who we are</h2>
+            <p class="p">[[CHAPTER_OVERVIEW]]</p>
+            <p class="p">[[AFFILIATION_STATEMENT]]</p>
+            <p class="p">[[ORIGIN_STORY]]</p>
+            <div class="about__actions">
+              <div class="box sm hero__cta secondary">FAQ</div>
+            </div>
+          </div>
+          <div class="box about__asset">[[ABOUT_ASSET]]</div>
+        </div>
+        <div class="about__keywords">
+          <div class="keyword">
+            <div class="box sm keyword__title">[[KEYWORD]]</div>
+            <p class="p">[[KEYWORD_SUBTEXT]]</p>
+          </div>
+          <div class="keyword">
+            <div class="box sm keyword__title">[[KEYWORD]]</div>
+            <p class="p">[[KEYWORD_SUBTEXT]]</p>
+          </div>
+          <div class="keyword">
+            <div class="box sm keyword__title">[[KEYWORD]]</div>
+            <p class="p">[[KEYWORD_SUBTEXT]]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Combined: projects / updates / leadership as cards, full page -->
+    <section class="section" id="what-we-do">
+      <div class="container">
+        <div class="section__header center">
+          <h2 class="h2">What we do</h2>
+          <p class="p">[[WHAT_WE_DO_INTRO]]</p>
+        </div>
+
+        <div class="card-grid" id="projects">
+          <article class="card">
+            <div class="box card__media">[[PROJECT_MEDIA]]</div>
+            <div class="card__body">
+              <h3 class="h3">Projects</h3>
+              <p class="p">[[PROJECTS_INTRO]]</p>
+              <div class="card__meta">
+                <div class="box sm card__tag">[[STATUS]]</div>
+                <div class="box sm card__tag">[[TECH]]</div>
+              </div>
+            </div>
+            <div class="btn-coming">More projects coming soon</div>
+          </article>
+
+          <article class="card">
+            <div class="box card__media">[[UPDATE_MEDIA]]</div>
+            <div class="card__body">
+              <h3 class="h3">Updates</h3>
+              <p class="p">[[UPDATES_INTRO]]</p>
+              <div class="card__meta">
+                <div class="box sm card__tag">[[DATE]]</div>
+                <div class="box sm card__tag">[[CATEGORY]]</div>
+              </div>
+            </div>
+            <div class="btn-coming">More updates coming soon</div>
+          </article>
+
+          <article class="card">
+            <div class="box card__media">[[OFFICER_PHOTO]]</div>
+            <div class="card__body">
+              <h3 class="h3">Leadership</h3>
+              <p class="p">[[TEAM_INTRO]]</p>
+              <div class="card__meta">
+                <div class="box sm card__tag">[[ROLE]]</div>
+                <div class="box sm card__tag">[[TERM]]</div>
+              </div>
+            </div>
+            <div class="btn-coming">More leaders coming soon</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FAQ (complete), full page -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section__header center">
+          <h2 class="h2">Frequently asked questions</h2>
+        </div>
+        <div class="faq__list">
+          <div class="faq__item card">
+            <div class="faq__q"><div class="box sm">[[QUESTION]]</div></div>
+          </div>
+          <div class="faq__item card">
+            <div class="faq__q"><div class="box sm">[[QUESTION]]</div></div>
+          </div>
+          <div class="faq__item card">
+            <div class="faq__q"><div class="box sm">[[QUESTION]]</div></div>
+          </div>
+          <div class="faq__item card">
+            <div class="faq__q"><div class="box sm">[[QUESTION]]</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Closing invitation, full page -->
+    <section class="closing" id="join">
+      <div class="container closing__inner">
+        <h2 class="h2">[[CLOSING_HEADLINE]]</h2>
+        <p class="p">[[CLOSING_COPY]]</p>
+        <div class="hero__actions">
+          <div class="box sm hero__cta">Join Haribon</div>
+          <div class="box sm hero__cta secondary">Ask a question</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__cols">
+        <div class="footer__col"><div class="box sm">[[LOGO]]</div></div>
+        <div class="footer__col">
+          <div class="box sm">[[LINK]]</div>
+          <div class="box sm">[[LINK]]</div>
+          <div class="box sm">[[LINK]]</div>
+        </div>
+        <div class="footer__col">
+          <div class="box sm">[[LINK]]</div>
+          <div class="box sm">[[LINK]]</div>
+          <div class="box sm">[[LINK]]</div>
+        </div>
+        <div class="footer__col">
+          <div class="box sm">[[LINK]]</div>
+          <div class="box sm">[[LINK]]</div>
+          <div class="box sm">[[LINK]]</div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="box sm">[[ORG_NAME]]</div>
+        <div class="box sm">[[SOCIAL]]</div>
+      </div>
+    </div>
+  </footer>
+<!-- impeccable-live-start -->
+<script src="http://localhost:8400/live.js?token=235e5181-65aa-48c2-a7fb-e73af0c794c4"></script>
+<!-- impeccable-live-end -->
+</body>
+</html>

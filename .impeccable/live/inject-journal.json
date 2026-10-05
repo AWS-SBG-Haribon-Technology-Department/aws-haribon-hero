@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "appRoot": "C:\\Users\\gbacu\\Documents\\Gio-Files\\PROGRAMMING\\PROJECTS\\AWS-Haribon\\Website-DC",
+  "framework": "static-html",
+  "port": 8400,
+  "pid": 20160,
+  "recordedAt": "2026-08-21T06:56:35.129Z",
+  "artifacts": [
+    {
+      "kind": "patched",
+      "path": "wireframe/index.html",
+      "patch": "live-tag",
+      "markers": [
+        "impeccable-live-start",
+        "data-impeccable-csp-original"
+      ]
+    }
+  ]
+}

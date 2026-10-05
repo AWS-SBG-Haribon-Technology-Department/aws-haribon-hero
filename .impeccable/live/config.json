@@ -1,0 +1,6 @@
+{
+  "files": ["wireframe/index.html"],
+  "insertBefore": "</body>",
+  "commentSyntax": "html",
+  "cspChecked": true
+}
