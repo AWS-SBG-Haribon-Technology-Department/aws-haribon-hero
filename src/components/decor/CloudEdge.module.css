@@ -1,0 +1,18 @@
+.edge {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: clamp(48px, 7vw, 110px);
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.top {
+  top: -2px;
+}
+
+.bottom {
+  bottom: -2px;
+  transform: scaleY(-1);
+}

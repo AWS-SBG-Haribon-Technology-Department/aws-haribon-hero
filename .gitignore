@@ -25,3 +25,9 @@ Thumbs.db
 # Agents
 /.commandcode
 
+
+# Local QA artifacts
+/.playwright-mcp/
+/ref/
+next-env.d.ts
+*.tsbuildinfo

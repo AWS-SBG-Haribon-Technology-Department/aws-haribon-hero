@@ -1,0 +1,225 @@
+.crew {
+  position: relative;
+  padding: var(--section-y) 0;
+  background:
+    radial-gradient(50% 40% at 100% 0%, rgb(182 230 241 / 0.55), transparent 70%),
+    var(--mist-50);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 16px;
+}
+.headCopy {
+  display: grid;
+  gap: 18px;
+  max-width: 42rem;
+}
+.headCopy h2 em {
+  font-style: italic;
+  font-weight: 900;
+  color: var(--azure-700);
+}
+
+.salute {
+  width: clamp(96px, 16vw, 190px);
+  margin-bottom: -8px;
+}
+.salute img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 16px 20px rgb(15 51 88 / 0.22));
+}
+
+/* ── Badges ──────────────────────────────────────────────────── */
+.badge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  background:
+    radial-gradient(80% 60% at 70% 15%, rgb(255 246 200 / 0.75), transparent 70%),
+    var(--gradient-sky-open);
+  box-shadow: 0 0 0 3px var(--white), 0 8px 18px -8px rgb(15 51 88 / 0.5);
+}
+.badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.monogram {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 1.375rem;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  text-shadow: 0 2px 6px rgb(15 51 88 / 0.35);
+}
+
+.who {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  color: var(--text-strong);
+}
+.role {
+  font-size: 0.9375rem;
+  color: var(--azure-800);
+  font-weight: 500;
+}
+.dept {
+  justify-self: start;
+  margin-top: 8px;
+  padding: 2px 10px;
+  border-radius: var(--r-pill);
+  background: var(--mist-50);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: var(--ink-800);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+
+/* ── Executives ──────────────────────────────────────────────── */
+.execs {
+  display: grid;
+  gap: 16px;
+  margin-top: clamp(32px, 5vw, 56px);
+}
+
+.execCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 28px 24px;
+  border-radius: var(--r-xl);
+  color: var(--white);
+  /* Starts at azure-700 so white and sun text both clear 4.5:1. */
+  background:
+    radial-gradient(60% 90% at 100% 0%, rgb(58 179 239 / 0.45), transparent 70%),
+    linear-gradient(150deg, var(--azure-700) 0%, var(--azure-800) 55%, var(--azure-900) 100%);
+  box-shadow: var(--shadow-lift);
+  overflow: hidden;
+}
+.execCard .badge {
+  width: 88px;
+  height: 88px;
+}
+.execCard .monogram {
+  font-size: 1.875rem;
+}
+.execCard .name {
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  color: var(--white);
+}
+.execCard .role {
+  color: var(--sun-300);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.wings {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  width: 64px;
+  color: rgb(255 255 255 / 0.4);
+}
+
+/* ── Chiefs ──────────────────────────────────────────────────── */
+.chiefs {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px 20px;
+  border-radius: var(--r-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+}
+
+.more {
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--hairline);
+}
+.more:hover {
+  transform: none;
+  box-shadow: inset 0 0 0 1.5px var(--hairline);
+}
+.more p {
+  color: var(--text-muted);
+}
+.more strong {
+  color: var(--ink-900);
+}
+
+@media (min-width: 640px) {
+  .execs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .chiefs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .chiefs {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .card {
+    flex-direction: column;
+    gap: 18px;
+    padding: 24px;
+  }
+  .execCard {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 639px) {
+  .head {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .salute {
+    justify-self: end;
+    width: 92px;
+    margin: -8px 8px -20px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .execCard .badge {
+    width: 64px;
+    height: 64px;
+  }
+  .execCard .monogram {
+    font-size: 1.375rem;
+  }
+}

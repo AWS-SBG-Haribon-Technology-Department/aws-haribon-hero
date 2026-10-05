@@ -1,0 +1,325 @@
+.join {
+  position: relative;
+  isolation: isolate;
+  padding: var(--section-y) 0 clamp(160px, 18vw, 240px);
+  overflow: clip;
+  color: var(--white);
+}
+
+/* Sunrise: deep azure overhead, sun breaking at the horizon. Copy sits in
+   the top band where white text holds 4.5:1 or better. */
+.sky {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    var(--azure-900) 0%,
+    var(--azure-700) 26%,
+    var(--sky-500) 52%,
+    var(--sky-400) 70%,
+    #bfe6f3 84%,
+    #fff1cf 100%
+  );
+}
+
+.rays {
+  position: absolute;
+  left: 50%;
+  width: 260vmax;
+  height: 260vmax;
+  margin-left: -130vmax;
+  margin-bottom: -130vmax;
+  bottom: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, rgb(255 246 170 / 0.38) 0deg 5deg, rgb(255 246 170 / 0) 5deg 15deg);
+  will-change: transform;
+  -webkit-mask-image: radial-gradient(closest-side, #000 0%, rgb(0 0 0 / 0.65) 18%, transparent 46%);
+  mask-image: radial-gradient(closest-side, #000 0%, rgb(0 0 0 / 0.65) 18%, transparent 46%);
+}
+
+.sun {
+  position: absolute;
+  left: 50%;
+  bottom: -18vmin;
+  width: 70vmin;
+  height: 70vmin;
+  margin-left: -35vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fffef2 0%, #fff6c2 22%, rgb(255 241 118 / 0.55) 42%, rgb(247 148 33 / 0.16) 62%, transparent 72%);
+}
+
+.st1 { top: 14%; left: 8%; width: 40px; }
+.st2 { top: 30%; right: 9%; width: 28px; }
+.sp1 { top: 9%; right: 24%; width: 22px; }
+.sp2 { top: 46%; left: 16%; width: 18px; }
+
+.inner {
+  display: grid;
+  gap: clamp(32px, 5vw, 56px);
+  justify-items: center;
+  text-align: center;
+}
+
+.head {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  max-width: 44rem;
+}
+.head h2 {
+  color: var(--white);
+  font-size: clamp(2.5rem, 1.4rem + 4.6vw, 5rem);
+  text-shadow: 0 2px 2px rgb(15 51 88 / 0.2), 0 16px 40px rgb(15 51 88 / 0.35);
+}
+.head h2 em {
+  font-style: italic;
+  font-weight: 900;
+  color: var(--sun-300);
+}
+.lede {
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  color: #e6f1fc;
+  max-width: 36rem;
+}
+
+/* ── Boarding pass ───────────────────────────────────────────── */
+.stage {
+  position: relative;
+  width: min(100%, 880px);
+}
+
+.pass {
+  --notch: 14px;
+  position: relative;
+  display: grid;
+  text-align: left;
+  color: var(--ink-900);
+  border-radius: var(--r-xl);
+  background: var(--white);
+}
+
+.passShadow {
+  filter: drop-shadow(0 2px 3px rgb(15 51 88 / 0.12)) drop-shadow(0 30px 40px rgb(15 51 88 / 0.35));
+}
+
+.main {
+  display: grid;
+  gap: 22px;
+  padding: 24px;
+}
+
+.passHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--hairline);
+}
+.airline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-style: italic;
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+  color: var(--azure-700);
+}
+.passType {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-700);
+}
+
+.route {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+.route > div {
+  display: grid;
+}
+.to {
+  text-align: right;
+}
+.code {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 1.8rem + 3vw, 3.75rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink-950);
+}
+.city {
+  font-size: 0.9375rem;
+  color: var(--ink-700);
+}
+.routeLine {
+  width: 100%;
+  height: 28px;
+  color: var(--azure-border-500);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 20px;
+  margin: 0;
+}
+.fields dt {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-700);
+}
+.fields dd {
+  margin: 2px 0 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  color: var(--ink-950);
+}
+
+.stub {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  padding: 24px;
+  border-top: 2px dashed var(--cloud-fade-200);
+  background: linear-gradient(180deg, var(--mist-50), var(--white));
+  border-radius: 0 0 var(--r-xl) var(--r-xl);
+}
+
+.stub :global(.btn) {
+  width: 100%;
+}
+.note {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ink-700);
+}
+.barcode {
+  display: block;
+  height: 38px;
+  margin-top: 4px;
+  border-radius: 4px;
+  opacity: 0.8;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ink-900) 0 2px,
+    transparent 2px 4px,
+    var(--ink-900) 4px 5px,
+    transparent 5px 8px,
+    var(--ink-900) 8px 11px,
+    transparent 11px 13px
+  );
+}
+
+.stamp {
+  position: absolute;
+  left: 50%;
+  top: 92px;
+  margin-left: -42px;
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 3px solid var(--orange-500);
+  box-shadow: inset 0 0 0 4px var(--white), inset 0 0 0 5.5px rgb(247 148 33 / 0.7);
+  color: var(--orange-500);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 0.95;
+  text-transform: uppercase;
+  text-align: center;
+  transform: rotate(-14deg);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.bonee {
+  position: absolute;
+  z-index: 2;
+  width: clamp(150px, 26vw, 280px);
+  right: -6%;
+  bottom: -18%;
+  pointer-events: none;
+}
+.bonee img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 26px rgb(15 51 88 / 0.3));
+}
+
+@media (min-width: 900px) {
+  .pass {
+    grid-template-columns: minmax(0, 1fr) 300px;
+  }
+  .main {
+    padding: 32px 36px;
+  }
+  .fields {
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-between;
+  }
+  .stub {
+    padding: 32px 28px;
+    border-top: 0;
+    border-left: 2px dashed var(--cloud-fade-200);
+    border-radius: 0 var(--r-xl) var(--r-xl) 0;
+  }
+  /* Real tear-off notches: punched out of the card with a mask so the
+     sky shows through. The wrapper's drop-shadow follows the cut. */
+  .pass {
+    --nx: calc(100% - 300px);
+    -webkit-mask:
+      radial-gradient(circle var(--notch) at var(--nx) 0, #0000 97%, #000 100%) top / 100% 51% no-repeat,
+      radial-gradient(circle var(--notch) at var(--nx) 100%, #0000 97%, #000 100%) bottom / 100% 51% no-repeat;
+    mask:
+      radial-gradient(circle var(--notch) at var(--nx) 0, #0000 97%, #000 100%) top / 100% 51% no-repeat,
+      radial-gradient(circle var(--notch) at var(--nx) 100%, #0000 97%, #000 100%) bottom / 100% 51% no-repeat;
+  }
+  .stamp {
+    left: calc((100% - 300px) / 2);
+    top: 96px;
+  }
+}
+
+/* Bonee cheers beside the pass where there is room, below it elsewhere. */
+@media (min-width: 1360px) {
+  .bonee {
+    right: -236px;
+    bottom: -40px;
+    width: 224px;
+  }
+}
+
+@media (max-width: 1359px) {
+  .bonee {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: clamp(150px, 30vw, 220px);
+    margin: -20px auto 0;
+  }
+}
+
+@media (max-width: 899px) {
+  .stamp {
+    width: 70px;
+    height: 70px;
+    margin-left: -35px;
+    top: 100px;
+    font-size: 0.9375rem;
+  }
+}

@@ -1,0 +1,281 @@
+.tracks {
+  position: relative;
+  margin-top: -2px;
+  isolation: isolate;
+  padding: clamp(140px, 16vw, 220px) 0 clamp(150px, 16vw, 230px);
+  color: var(--white);
+  /* First layer: a white strip under the cloud edge so a fractional
+     section offset can never show a blue hairline above the scallops. */
+  background:
+    linear-gradient(var(--white), var(--white)) top / 100% 6px no-repeat,
+    radial-gradient(55% 40% at 78% 18%, rgb(58 179 239 / 0.35), transparent 70%),
+    radial-gradient(40% 30% at 10% 80%, rgb(255 241 118 / 0.08), transparent 70%),
+    linear-gradient(175deg, #2a70bb 0%, var(--azure-800) 38%, var(--azure-900) 75%, var(--azure-950) 100%);
+  overflow: clip;
+  overflow-clip-margin: 8px;
+}
+
+/* Faint star dust: the night side of the brand sky. */
+.dust {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.55;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 22%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 27% 64%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 44% 31%, #fffbd0 50%, transparent 51%),
+    radial-gradient(1px 1px at 58% 78%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 69% 12%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 83% 52%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 92% 86%, #fffbd0 50%, transparent 51%),
+    radial-gradient(1px 1px at 6% 90%, #fff 50%, transparent 51%);
+  background-size: 520px 520px;
+}
+
+.layout {
+  display: grid;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+.intro {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  max-width: 32rem;
+}
+.intro h2 {
+  color: var(--white);
+}
+.intro h2 em {
+  display: block;
+  font-style: italic;
+  font-weight: 900;
+  color: var(--sun-300);
+}
+.lede {
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--text-inverse-muted);
+}
+
+.bowee {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 8px 0 0;
+}
+.bowee img {
+  width: 112px;
+  height: auto;
+  flex: none;
+  filter: drop-shadow(0 16px 20px rgb(4 20 40 / 0.45));
+}
+.bowee figcaption {
+  position: relative;
+  margin-bottom: 28px;
+  padding: 12px 16px;
+  border-radius: 16px 16px 16px 4px;
+  background: rgb(255 255 255 / 0.1);
+  border: 1px solid rgb(255 255 255 / 0.22);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--white);
+}
+.bowee strong {
+  font-family: var(--font-display);
+  color: #ffd1dc;
+}
+
+/* ── Constellation ───────────────────────────────────────────── */
+.chart {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-inline: auto;
+  max-width: 760px;
+}
+
+.lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.edgeLine {
+  stroke: rgb(255 255 255 / 0.45);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  transition: stroke 0.25s var(--ease-out), stroke-width 0.25s var(--ease-out);
+}
+.edgeLine[data-on] {
+  stroke: var(--sun-300);
+  stroke-width: 2.5;
+}
+
+.star {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+.star i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #ffffff 0 30%, #fff59d 55%, rgb(255 241 118 / 0) 72%);
+  box-shadow: 0 0 18px 4px rgb(255 241 118 / 0.55);
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+}
+.star[data-size="2"] i {
+  width: 20px;
+  height: 20px;
+}
+.star[data-size="3"] i {
+  width: 30px;
+  height: 30px;
+  box-shadow: 0 0 30px 8px rgb(255 241 118 / 0.6);
+}
+.star[data-on] i {
+  transform: translate(-50%, -50%) scale(1.6);
+  box-shadow: 0 0 34px 10px rgb(255 241 118 / 0.75);
+}
+
+.starLabel {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+  color: rgb(255 255 255 / 0.86);
+  text-shadow: 0 0 6px var(--azure-900), 0 0 12px var(--azure-900);
+  transition: color 0.25s var(--ease-out);
+}
+.star[data-size="3"] .starLabel {
+  top: 24px;
+  font-weight: 700;
+  color: var(--white);
+}
+.star[data-align="start"] .starLabel {
+  transform: translateX(-12px);
+}
+.star[data-align="end"] .starLabel {
+  transform: translateX(calc(-100% + 12px));
+}
+.star[data-on] .starLabel {
+  color: var(--sun-300);
+}
+
+/* ── Track list ──────────────────────────────────────────────── */
+.list {
+  display: grid;
+  gap: 12px;
+  margin-top: clamp(40px, 6vw, 72px);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  column-gap: 14px;
+  row-gap: 4px;
+  padding: 18px 18px 20px;
+  border-radius: var(--r-lg);
+  background: rgb(255 255 255 / 0.05);
+  border: 1px solid rgb(255 255 255 / 0.12);
+  transition: background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+.item[data-on] {
+  background: rgb(255 255 255 / 0.11);
+  border-color: rgb(255 241 118 / 0.55);
+}
+
+.icon {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.1);
+  color: var(--sun-300);
+}
+.icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.item h3 {
+  align-self: end;
+  font-size: 1.0625rem;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+.item p {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-inverse-muted);
+}
+
+@media (min-width: 640px) {
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  }
+  .list {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .item {
+    grid-template-columns: 1fr;
+    align-content: start;
+  }
+  .icon {
+    grid-row: auto;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 639px) {
+  .starLabel {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .star i {
+    width: 10px;
+    height: 10px;
+  }
+  .star[data-size="2"] i {
+    width: 14px;
+    height: 14px;
+  }
+  .star[data-size="3"] i {
+    width: 20px;
+    height: 20px;
+  }
+  .item {
+    padding: 14px 14px 16px;
+    grid-template-columns: 38px 1fr;
+  }
+  .icon {
+    width: 38px;
+    height: 38px;
+  }
+  .bowee img {
+    width: 92px;
+  }
+}

@@ -1,0 +1,109 @@
+/*
+ * Haribon design tokens: primitive -> semantic -> component.
+ * Primitives come from the brand guide (pp. 5–6) plus the derived web inks in
+ * docs/03-design/design.md §5. Components consume semantic roles only.
+ */
+
+:root {
+  /* ── Primitive: colour ─────────────────────────────────────────── */
+  --sky-500: #3a92ef;
+  --sky-400: #3ab3ef;
+  --cloud-blue-300: #b6e6f1;
+  --cloud-fade-200: #cce0f2;
+  --white: #ffffff;
+  --mist-50: #f1f8fe;
+  --sun-soft-200: #fdf6b8;
+  --sun-300: #fff176;
+  --leaf-500: #66bb6a;
+  --azure-700: #2664a5;
+  --azure-800: #1f568e;
+  --azure-900: #17446f;
+  --azure-950: #0f3358;
+  --azure-border-500: #5f8db7;
+  --orange-500: #f79421;
+  --ink-950: #0b2239;
+  --ink-900: #102a43;
+  --ink-800: #173f5f;
+  --ink-700: #1f4e70;
+  --error-700: #b42318;
+
+  /* ── Primitive: type ───────────────────────────────────────────── */
+  --font-display: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  /* Amazon Ember is the approved body face; it is used when installed and
+     Fira Sans (humanist, similar rhythm) stands in until licensed webfont
+     files are supplied. */
+  --font-body: "Amazon Ember", var(--font-fira), "Fira Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Primitive: space (8px base, 4px half-steps) ───────────────── */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 80px;
+  --s-10: 96px;
+  --s-11: 128px;
+
+  /* ── Primitive: radius, easing ─────────────────────────────────── */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-2xl: 32px;
+  --r-pill: 999px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ── Semantic ──────────────────────────────────────────────────── */
+  --bg-canvas: var(--mist-50);
+  --surface: var(--white);
+  --surface-subtle: var(--cloud-blue-300);
+  --surface-glass: rgb(255 255 255 / 0.62);
+  --surface-glass-strong: rgb(255 255 255 / 0.82);
+  --glass-edge: rgb(255 255 255 / 0.75);
+  --text: var(--ink-900);
+  --text-strong: var(--ink-950);
+  --text-muted: var(--ink-700);
+  --text-inverse: var(--white);
+  --text-inverse-muted: #d5e7fa;
+  --action: var(--azure-700);
+  --action-hover: var(--azure-800);
+  --action-active: var(--azure-900);
+  --accent-warm: var(--orange-500);
+  --accent-sun: var(--sun-300);
+  --accent-nature: var(--leaf-500);
+  --border: var(--azure-border-500);
+  --hairline: rgb(38 100 165 / 0.16);
+  --focus-inner: var(--azure-700);
+  --focus-outer: var(--white);
+
+  --gradient-sky-open: linear-gradient(180deg, #2f87e9 0%, var(--sky-500) 28%, var(--sky-400) 62%, var(--cloud-blue-300) 100%);
+  --gradient-sky-deep: linear-gradient(160deg, var(--sky-500) 0%, var(--azure-700) 45%, var(--azure-900) 100%);
+  --gradient-cloud-fade: linear-gradient(180deg, var(--mist-50) 0%, var(--cloud-fade-200) 55%, var(--white) 100%);
+  --gradient-sun-wash: linear-gradient(180deg, #f7942110 0%, #f7942180 100%);
+
+  --shadow-soft: 0 1px 2px rgb(16 42 67 / 0.06), 0 12px 32px -12px rgb(23 68 111 / 0.22);
+  --shadow-lift: 0 2px 4px rgb(16 42 67 / 0.06), 0 24px 48px -18px rgb(23 68 111 / 0.32);
+
+  /* ── Layout ────────────────────────────────────────────────────── */
+  --container: 1280px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --nav-h: 72px;
+  --section-y: clamp(80px, 12vw, 160px);
+
+  /* ── Component ─────────────────────────────────────────────────── */
+  --button-primary-bg: var(--action);
+  --button-primary-bg-hover: var(--action-hover);
+  --button-primary-bg-active: var(--action-active);
+  --button-primary-fg: var(--text-inverse);
+  --button-secondary-bg: var(--white);
+  --button-secondary-fg: var(--text);
+  --card-bg: var(--surface);
+  --card-fg: var(--text);
+  --glass-bg: var(--surface-glass);
+  --badge-sun-bg: var(--sun-300);
+  --badge-sun-fg: var(--text);
+}
